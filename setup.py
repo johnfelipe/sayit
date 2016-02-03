@@ -25,7 +25,7 @@ else:
 if os.environ.get('TOX'):
     django = 'Django >= 1.8.5'
 else:
-    django = 'Django >= 1.8.5, < 1.9'
+    django = 'Django >= 1.8.5, < 1.10'
 
 setup(
     name="django-sayit",
@@ -42,10 +42,11 @@ setup(
         'pytz >= 2013d',
         'six >= 1.4.1',
         django,
-        'Django-Select2 == 4.3.2',
+        'mysociety-Django-Select2 == 4.3.2.1',
         'audioread >= 1.0.1',
         'elasticsearch >= 0.4',
-        'django-haystack >= 2.4, < 2.5',
+        # No PyPI version of Haystack yet works with 1.9
+        # 'django-haystack >= 2.4, < 2.5',
         'django-bleach >= 0.2.1',
         'mysociety-django-popolo >= 0.0.5',
         'mysociety-django-sluggable >= 0.2.7',
