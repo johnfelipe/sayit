@@ -19,7 +19,8 @@ else:
     ssl = [
         'pyOpenSSL == 0.14',
         'ndg-httpsclient == 0.3.2',
-        'pyasn1 == 0.1.7',
+        #'pyasn1 == 0.1.7',
+        'pyasn1 >= 0.1.8',
     ]
 
 if os.environ.get('TOX'):
