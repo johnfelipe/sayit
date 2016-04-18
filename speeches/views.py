@@ -252,8 +252,9 @@ class SpeechView(NamespaceMixin, InstanceViewMixin, DetailView):
 class InstanceView(NamespaceMixin, InstanceViewMixin, ListView):
     """Done as a ListView on Speech to get recent speeches, we get instance for
     free in the request."""
-    model = Speech
-    paginate_by = 20
+    #model = Speech
+    model = Speaker
+    paginate_by = 9  #20
 
     # Use a slightly different template
     def get_template_names(self):

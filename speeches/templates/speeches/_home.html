@@ -2,6 +2,9 @@
 {% load i18n %}
 {% load humanize %}
 {% load speech_utils %}
+{% load staticfiles %}
+{% load thumbnail %}
+
 
 {% block title %}Home{% endblock %}
 
@@ -73,7 +76,35 @@
     {% endblock %}
   </div>
 
-The top 9 speakers:
+
+  <div class="page-content__row">
+    <h2>{% trans 'The top 9 speakers:' %}</h2>
+
+  {% if speaker_list %}
+
+    <ul class="speaker-list">
+      {% for speaker in speaker_list %}
+        <li>
+            <a href="{{ speaker.get_absolute_url }}">
+                <div class="speaker-card">
+
+                    <img src="{% if speaker.image_cache %}{{ speaker.image_cache|thumbnail_url:'speaker-thumb' }}{% elif speaker.image %}{{ speaker.image }}{% else %}{% static "speeches/i/a.png" %}{% endif %}"
+                         style="border-color: #{{ speaker.colour }}; background-color: #{{ speaker.colour }};" alt="" class="speaker-card__portrait speaker-portrait round-image speaker-portrait--small">
+                    <span class="speaker-card__name">{{ speaker }}</span>
+
+                </div>
+            </a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+
+
+  </div>
+   
+
+
   {% else %}
 
     <div class="nothing-here-yet-message">
