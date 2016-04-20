@@ -252,9 +252,9 @@ class SpeechView(NamespaceMixin, InstanceViewMixin, DetailView):
 class InstanceView(NamespaceMixin, InstanceViewMixin, ListView):
     """Done as a ListView on Speech to get recent speeches, we get instance for
     free in the request."""
-    #model = Speech
-    model = Speaker
-    paginate_by = 9  #20
+    model = Speech
+    #model = Speaker
+    paginate_by = 20
 
     # Use a slightly different template
     def get_template_names(self):
@@ -270,6 +270,7 @@ class InstanceView(NamespaceMixin, InstanceViewMixin, ListView):
         context['count_speakers'] = Speaker.objects.for_instance(self.request.instance).count()
         context['average_length'] = Speech.objects.for_instance(self.request.instance) \
             .annotate(length=Length('text')).aggregate(avg=Avg('length'))['avg']
+        context['top9_speakers'] = Speaker.objects.annotate(num_speeches=Count('speech')).order_by('-num_speeches')[:9]
         return context
 
 

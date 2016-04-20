@@ -77,13 +77,13 @@
   </div>
 
 
-  <div class="page-content__row">
-    <h2>{% trans 'The top 9 speakers:' %}</h2>
+  <div class="page-content__unit">
+    <h2>{% trans 'Top 9 speakers:' %}</h2>
 
-  {% if speaker_list %}
+  {% if top9_speakers %}
 
     <ul class="speaker-list">
-      {% for speaker in speaker_list %}
+      {% for speaker in top9_speakers %}
         <li>
             <a href="{{ speaker.get_absolute_url }}">
                 <div class="speaker-card">
