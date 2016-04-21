@@ -76,6 +76,10 @@
     {% endblock %}
   </div>
 
+  <div class="page-content__unit">
+    {% trans 'The latest transcript is from:' %}
+    <a href="{% url 'speeches:speech-view' last_speech.id %}"><strong>{{ last_speech.start_date }}</strong></a>
+  </div>
 
   <div class="page-content__unit">
     <h2>{% trans 'Top 10 speakers:' %}</h2>
