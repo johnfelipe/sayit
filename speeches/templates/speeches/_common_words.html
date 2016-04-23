@@ -1,0 +1,82 @@
+{% load i18n %}
+{% load speech_extension %}
+{% load thumbnail %}
+{% load staticfiles %}
+
+
+<br><br>
+<h3>{% trans 'Palabras Comunes' %}</h3>
+{% get_common_words as common_words %}
+
+<script src="{% static "speeches/cloud/d3.js" %}"></script>
+<script src="{% static "speeches/cloud/d3.layout.cloud.js" %}"></script>
+
+
+<script>
+    most_common_words =
+    {{ common_words|safe }}
+</script>
+
+<div class="wordcloud"></div>
+
+<script>
+    var cloud = $('.wordcloud'),
+            h = 175,
+            w = cloud.width(),
+            font = '"Helvetica Neue", Helvetica, sans serif';
+    var fontSize = d3.scale.log().range([10, 100]).domain([
+        d3.min(most_common_words, function (d) {
+            return d[1];
+        })
+        , d3.max(most_common_words, function (d) {
+            return d[1];
+        })
+    ]);
+    var fill = d3.scale.category20();
+    d3.layout.cloud()
+            .words(most_common_words.map(function (d) {
+                return {text: d[0], size: d[1] * 20, score: d[1]};
+            }))
+            .timeInterval(10)
+            .size([w, h])
+            .rotate(0)
+            .font(font)
+            .fontWeight("bold")
+            .fontSize(function (d) {
+                return fontSize(+d.score);
+            })
+            .text(function (d) {
+                return d.text;
+            })
+            .on("end", draw)
+            .start();
+    function draw(words) {
+        d3.select(".wordcloud").append("svg")
+                .attr("width", w)
+                .attr("height", h)
+                .append("g")
+                .attr("transform", "translate(" + [w >> 1, h >> 1] + ")")
+                .selectAll("text")
+                .data(words)
+                .enter().append("text")
+                .attr("class", "cloud-word")
+                .attr("text-anchor", "middle")
+                .attr("transform", function (d) {
+                    return "translate(" + [d.x, d.y] + ")";
+                })
+                .style("font-family", font)
+                .style("font-weight", "bold")
+                .style("font-size", function (d) {
+                    return d.size + "px";
+                })
+                .style("fill", function (d, i) {
+                    return fill(i);
+                })
+                .text(function (d) {
+                    return d.text;
+                })
+                .on("click", function (d) {
+                    window.location = '/search/?q=' + d.text;
+                });
+    }
+</script>
