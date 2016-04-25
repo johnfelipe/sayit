@@ -9,6 +9,7 @@
       <div class="search-wrapper">
           <input type="search" class="site-search__input" placeholder="{% trans 'Search' %}" name="q" value="{{ form.q.value }}"/>
           <input type="submit" class="icon-search" value="{% trans 'Search' %}"/>
+          <input type="checkbox" name="p" value="" />sort by date
         {% if form.speaker %}
           <label>
               <input type="checkbox" name="p" value="{{ form.p.value }}" checked>
