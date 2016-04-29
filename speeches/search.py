@@ -8,10 +8,16 @@ from speeches.models import Speaker, Speech, Section
 
 
 class HMSearchForm(SearchForm):
+    sorted_by = forms.CharField(required=False)
+
     def search(self):
         sqs = super(HMSearchForm, self).search()
         sqs = sqs.models(*self.model)
         sqs = sqs.highlight()
+        
+        if self.cleaned_data['sorted_by']:
+            sqs = sqs.order_by('start_date')
+        
         return sqs
 
 
