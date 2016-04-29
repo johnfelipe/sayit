@@ -16,7 +16,7 @@ class HMSearchForm(SearchForm):
         sqs = sqs.highlight()
         
         if self.cleaned_data['sorted_by']:
-            sqs = sqs.order_by('start_date')
+            sqs = sqs.order_by('-start_date')
         
         return sqs
 
