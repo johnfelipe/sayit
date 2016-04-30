@@ -270,7 +270,11 @@ class InstanceView(NamespaceMixin, InstanceViewMixin, ListView):
         context['count_speakers'] = Speaker.objects.for_instance(self.request.instance).count()
         context['average_length'] = Speech.objects.for_instance(self.request.instance) \
             .annotate(length=Length('text')).aggregate(avg=Avg('length'))['avg']
-        context['last_speech']  = Speech.objects.all().order_by('-start_date')[1]
+        #context['last_speech']  = Speech.objects.all().order_by('-start_date')[1]
+        context['last_speech'] = Speech.objects.for_instance(self.request.instance)
+        context['last_speech'] = context['last_speech'].visible(self.request)
+        context['last_speech'] = context['last_speech'].exclude(start_date=None)
+        context['last_speech'] = context['last_speech'].order_by('-start_date').first()
         context['top_speakers'] = Speaker.objects.annotate(num_speeches=Count('speech')).order_by('-num_speeches')[:10]
         return context
 
