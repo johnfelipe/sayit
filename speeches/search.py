@@ -14,10 +14,12 @@ class HMSearchForm(SearchForm):
         sqs = super(HMSearchForm, self).search()
         sqs = sqs.models(*self.model)
         sqs = sqs.highlight()
-        sqs = sqs.order_by('-start_date')
         
         if self.cleaned_data['sorted_by']:
-            sqs = sqs.order_by('start_date')
+            sqs = sqs.order_by('start_date')    #newest first
+        else:
+            sqs = sqs.order_by('-start_date')   #lasted first
+
         
         return sqs
 
