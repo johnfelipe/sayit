@@ -9,7 +9,6 @@
       <div class="search-wrapper">
           <input type="search" class="site-search__input" placeholder="{% trans 'Search' %}" name="q" value="{{ form.q.value }}"/>
           <input type="submit" class="icon-search" value="{% trans 'Search' %}"/>
-          <input type="checkbox" class="site-search__checkbox" name="sorted_by" value="date" {% if form.sorted_by.value %} {{ form.s.value }} checked {% endif %} /> sort by date
         {% if form.speaker %}
           <label>
               <input type="checkbox" name="p" value="{{ form.p.value }}" checked>
@@ -17,6 +16,7 @@
           </label>
         {% endif %}
       </div>
+      <input type="checkbox" class="site-search__checkbox" name="sorted_by" value="date" {% if form.sorted_by.value %} {{ form.s.value }} checked {% endif %} /> sort by date
     </form>
 
     <div class="page-content__row ">
