@@ -54,6 +54,11 @@
           speaker{{ count_speakers|pluralize }}{% endif %}{% if count_sections %}, in
           <a href="{{ url_parentless_list }}"><strong>{{ count_sections|intcomma }}</strong></a>
           section{{ count_sections|pluralize }}{% endif %}
+          
+          {% if count_questions %}, 
+          <a href="{{ url_parentless_list }}"><strong>{{ count_questions|intcomma }}</strong></a>
+          quetion{{ count_questions|pluralize }}
+          {% endif %}
         {% else %}
           {% blocktrans with n=count_speeches|intcomma count c=count_speeches trimmed %}
             <a href="{{ url_parentless_list }}"><strong>1</strong></a> speech
