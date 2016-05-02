@@ -1,5 +1,6 @@
 {% extends 'speeches/base.html' %}
-{% load i18n %}
+{% load url from future %}
+{% load speech_i18n %}
 {% load staticfiles %}
 {% load speech_utils %}
 {% load thumbnail %}
@@ -16,12 +17,18 @@
     <link rel="next" href="{% url "speeches:speech-view" next.id %}" />
   {% endif %}
 {% endwith %}
+<link href="{% static "speeches/shariff/shariff.complete.css" %}" media="all" rel="stylesheet" />
+<link href="{% static "speeches/shariff/shariff.patch.css" %}" media="all" rel="stylesheet" />
 {% endblock %}
 
 {% block og_description %}{{ speech.text|striptags|truncatewords:30 }}{% endblock %}
 {% block og_image %}{% with speech.speaker as speaker %}{% if speaker.image_cache %}http{% if request.is_secure %}s{% endif %}://{{ request.get_host }}{{ speaker.image_cache.url }}{% elif speaker.image %}{{ speaker.image }}{% else %}{{ block.super }}{% endif %}{% endwith %}{% endblock %}
 {# we don't know the details of this image #}
 {% block og_image_details %}{% endblock %}
+
+{% block extra_js %}
+<script type="text/javascript" src="{% static "speeches/shariff/shariff.complete.js" %}" charset="utf-8"></script>
+{% endblock %}
 
 {% block content %}
 
@@ -32,6 +39,8 @@
 {% else %}
 
 <div class="single-speech-layout">
+
+
 
   {% if 'created' in request.GET %}
     <div class="single-speech-layout__speech-created">
@@ -137,6 +146,7 @@
               {% endif %}
 
                 <div class="speech__links">
+                    <div data-lang="es" data-services="[&quot;facebook&quot;,&quot;twitter&quot;,&quot;googleplus&quot;,&quot;whatsapp&quot;,&quot;xing&quot;]" data-title="{{object.title}}" class="shariff"></div>
                     {% if object.section %}
                       <a href="{% url 'speeches:section-view' object.section.get_path %}#s{{ object.id }}"><i class="speech-icon icon-link-in-context"></i>{% trans "Show context" %}</a>
                     {% endif %}
@@ -147,6 +157,7 @@
                       <a href="{{ speech.get_edit_url }}"><i class="speech-icon icon-edit"></i>{% trans "Edit" %}</a>
                       <a href="{{ speech.get_delete_url }}"><i class="speech-icon icon-delete"></i>{% trans "Delete" %}</a>
                     {% endif %}
+
                   </div>
 
             </div> <!-- ./speech -->
@@ -156,10 +167,10 @@
                 <div class="speech-navigation">
                   <div class="speech-navigation__column speech-navigation__column--one">
                     {% if previous %}
-                     <a href="{% url "speeches:speech-view" previous.id %}" class="button speech-navigation__button">&larr; {{ previous.summary|bleach }}</a>
+                     <a href="{% url "speeches:speech-view" previous.id %}" class="button speech-navigation__button">&laquo; {{ previous.summary|bleach }}</a>
                     {% endif %}
                     {% if next %}
-                      <a href="{% url "speeches:speech-view" next.id %}" class="button speech-navigation__button">{{ next.summary|bleach }} &rarr;</a>
+                      <a href="{% url "speeches:speech-view" next.id %}" class="button speech-navigation__button">{{ next.summary|bleach }} &raquo;</a>
                     {% endif %}
                   </div>
                   <div class="speech-navigation__column speech-navigation__column--two">
