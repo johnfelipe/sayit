@@ -268,7 +268,7 @@ class InstanceView(NamespaceMixin, InstanceViewMixin, ListView):
         context['count_speeches'] = Speech.objects.for_instance(self.request.instance).visible(self.request).count()
         context['count_sections'] = Section.objects.for_instance(self.request.instance).count()
         context['count_speakers'] = Speaker.objects.for_instance(self.request.instance).count()
-        context['count_questions'] = Speaker.objects.for_instance(self.request.instance).count()  #TODO
+        #context['count_questions'] = Speaker.objects.for_instance(self.request.instance).count()  #TODO
         context['average_length'] = Speech.objects.for_instance(self.request.instance) \
             .annotate(length=Length('text')).aggregate(avg=Avg('length'))['avg']
         #context['last_speech']  = Speech.objects.all().order_by('-start_date')[1]
@@ -276,7 +276,7 @@ class InstanceView(NamespaceMixin, InstanceViewMixin, ListView):
         context['last_speech'] = context['last_speech'].visible(self.request)
         context['last_speech'] = context['last_speech'].exclude(start_date=None)
         context['last_speech'] = context['last_speech'].order_by('-start_date').first()
-        context['top_speakers'] = Speaker.objects.annotate(num_speeches=Count('speech')).order_by('-num_speeches')[:10]
+        context['top_speakers'] = Speaker.objects.for_instance(self.request.instance).annotate(num_speeches=Count('speech')).order_by('-num_speeches')[:10]
         return context
 
 
