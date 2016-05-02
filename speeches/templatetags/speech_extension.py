@@ -8,6 +8,7 @@ import re
 from django.utils.html import strip_tags
 import json
 from unicodedata import normalize
+from instances.views import InstanceViewMixin
 
 register = template.Library()
 
@@ -29,7 +30,7 @@ def get_top_speakers(count=9):
 
 
 @register.assignment_tag
-def get_common_words(count=20):
+def get_common_words(instance, count=20):
     from speeches.models import Speech
 
     r_punctuation = re.compile(r"[^\s\w0-9'’—-]", re.UNICODE)
@@ -102,7 +103,7 @@ def get_common_words(count=20):
 
     #speeches = Speech.objects.all()
     #speeches = Speech.objects.order_by('-id')[0]
-    speeches = Speech.objects.order_by('-id')[0:10]
+    speeches = Speech.objects.for_instance(instance).order_by('-id')[0:10]
 
     word_counts = defaultdict(int)
     total_count = 0

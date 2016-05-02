@@ -37,6 +37,7 @@ from django.views.generic.detail import SingleObjectMixin
 from django.views.generic.edit import BaseFormView, BaseUpdateView
 
 from django_select2.views import AutoResponseView
+from templatetags.speech_extension import get_common_words
 
 import logging
 
@@ -277,7 +278,13 @@ class InstanceView(NamespaceMixin, InstanceViewMixin, ListView):
         context['last_speech'] = context['last_speech'].exclude(start_date=None)
         context['last_speech'] = context['last_speech'].order_by('-start_date').first()
         context['top_speakers'] = Speaker.objects.for_instance(self.request.instance).annotate(num_speeches=Count('speech')).order_by('-num_speeches')[:10]
+        context['common_words'] = get_common_words(self.request.instance)
         return context
+
+
+
+
+
 
 
 # It doesn't actually use base32 IDs in the URL, but this works around Django
