@@ -103,7 +103,7 @@ def get_common_words(instance, count=20):
 
     #speeches = Speech.objects.all()
     #speeches = Speech.objects.order_by('-id')[0]
-    speeches = Speech.objects.for_instance(instance).order_by('-id')[0:10]
+    speeches = Speech.objects.for_instance(instance).order_by('-start_date')[0:50]
 
     word_counts = defaultdict(int)
     total_count = 0
