@@ -79,6 +79,14 @@
             {% plural %}
             <a href="{{ url_parentless_list }}"><strong>{{ n }}</strong></a> sections
           {% endblocktrans %}{% endif %}
+          
+          {% if count_questions %};
+          {% blocktrans with n=count_questions|intcomma count c=count_questions trimmed %}
+          <a href="{{ url_parentless_list }}"><strong>1</strong></a> question
+            {% plural %}
+            <a href="{{ url_parentless_list }}"><strong>{{ n }}</strong></a> questions
+          {% endblocktrans %}{% endif %}
+
         {% endif %}
       </div>
     {% block instance_blocks %}
