@@ -98,7 +98,7 @@ def get_common_words(instance, count=20):
         u'otros', 'todas', '000', 'voy', 'sido', 'era', 'vez', 'unas', 'cosas', 'general', 'tanto',
         u'frente', u'muchas', u'tener', u'tipo', u'mil', u'estoy', u'gran', u'san', u'tan', u'tengo', u'cual',
         u'dice', u'mayor', u'allá', u'solamente', u'bueno', u'primeramente', u'pues', u'consiguiente',
-        u'debido', u'cuenta', u'menos', u'también', u'palabra',
+        u'debido', u'cuenta', u'menos', u'también', u'palabra', u'cuál',
 	])
 
     #speeches = Speech.objects.all()

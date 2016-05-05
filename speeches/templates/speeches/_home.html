@@ -49,13 +49,17 @@
         {% url "speeches:parentless-list" as url_parentless_list %}
         {% if LANGUAGE_CODE == 'en' %}
           <a href="{{ url_parentless_list }}"><strong>{{ count_speeches|intcomma }}</strong></a>
-          speech{{ count_speeches|pluralize:"es" }}{% if count_speakers %}, by
+          speech{{ count_speeches|pluralize:"es" }}
+          
+          {% if count_speakers %};
           <a href="{{ url_speaker_list }}"><strong>{{ count_speakers|intcomma }}</strong></a>
-          speaker{{ count_speakers|pluralize }}{% endif %}{% if count_sections %}, in
+          speaker{{ count_speakers|pluralize }}{% endif %}
+          
+          {% if count_sections %};
           <a href="{{ url_parentless_list }}"><strong>{{ count_sections|intcomma }}</strong></a>
           section{{ count_sections|pluralize }}{% endif %}
           
-          {% if count_questions %}, 
+          {% if count_questions %};
           <a href="{{ url_parentless_list }}"><strong>{{ count_questions|intcomma }}</strong></a>
           quetion{{ count_questions|pluralize }}
           {% endif %}
@@ -82,12 +86,12 @@
   </div>
 
   <div class="page-content__unit">
-    {% trans 'The latest transcript is from:' %}
+    {% trans 'Fecha última Acta:' %}
     <a href="{{ last_speech.section.get_path }}"><strong>{{ last_speech.start_date }}</strong></a>
   </div>
 
   <div class="page-content__unit">
-    <h2>{% trans 'Top 10 speakers:' %}</h2>
+    <h2>{% trans 'Top 10 Congresistas:' %}</h2>
 
   {% if top_speakers %}
 
@@ -100,7 +104,7 @@
                     <img src="{% if speaker.image_cache %}{{ speaker.image_cache|thumbnail_url:'speaker-thumb' }}{% elif speaker.image %}{{ speaker.image }}{% else %}{% static "speeches/i/a.png" %}{% endif %}"
                          style="border-color: #{{ speaker.colour }}; background-color: #{{ speaker.colour }};" alt="" class="speaker-card__portrait speaker-portrait round-image speaker-portrait--small">
                     <span class="speaker-card__name"><small>{{ speaker }}</small></span>
-                    <div><small>{{ speaker.speech_set.count }} speeches</small></div>
+                    <div><small>( {{ speaker.speech_set.count }} ) Intervenciones</small></div>
 
                 </div>
             </a>
