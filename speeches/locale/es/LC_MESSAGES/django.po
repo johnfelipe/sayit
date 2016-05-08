@@ -492,7 +492,7 @@ msgid_plural ""
 "<a href=\"%(url_parentless_list)s\"><strong>%(n)s</strong></a> speeches"
 msgstr[0] "<a href=\"%(url_parentless_list)s\"><strong>1</strong></a> Acta"
 msgstr[1] ""
-"<a href=\"%(url_parentless_list)s\"><strong>%(n)s</strong></a> actas"
+"<a href=\"%(url_parentless_list)s\"><strong>%(n)s</strong></a> Intervenciones"
 
 #: speeches/templates/speeches/_home.html:77
 #, python-format
