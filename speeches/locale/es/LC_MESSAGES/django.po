@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sayit\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-08 02:23+0100\n"
-"PO-Revision-Date: 2016-05-08 09:26+0800\n"
+"POT-Creation-Date: 2016-05-08 05:05+0100\n"
+"PO-Revision-Date: 2016-05-08 12:07+0800\n"
 "Last-Translator: johnfelipe <ingenierofelipeurrego@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/mysociety/sayit/language/"
 "es/)\n"
@@ -467,7 +467,7 @@ msgid "Add a section"
 msgstr "Añadir una sección"
 
 #: speeches/templates/speeches/_home.html:18
-#: speeches/templates/speeches/_home.html:141
+#: speeches/templates/speeches/_home.html:153
 #: speeches/templates/speeches/popolo_import_form.html:6
 #: speeches/templates/speeches/popolo_import_form.html:12
 #: speeches/templates/speeches/speaker_list.html:14
@@ -485,7 +485,7 @@ msgstr "Importar discursos"
 msgid "Search speeches and statements"
 msgstr "Buscar discursos y declaraciones"
 
-#: speeches/templates/speeches/_home.html:67
+#: speeches/templates/speeches/_home.html:72
 #, python-format
 msgid "<a href=\"%(url_parentless_list)s\"><strong>1</strong></a> speech"
 msgid_plural ""
@@ -494,7 +494,7 @@ msgstr[0] "<a href=\"%(url_parentless_list)s\"><strong>1</strong></a> Acta"
 msgstr[1] ""
 "<a href=\"%(url_parentless_list)s\"><strong>%(n)s</strong></a> actas"
 
-#: speeches/templates/speeches/_home.html:72
+#: speeches/templates/speeches/_home.html:77
 #, python-format
 msgid "<a href=\"%(url_speaker_list)s\"><strong>1</strong></a> speaker"
 msgid_plural ""
@@ -503,7 +503,7 @@ msgstr[0] "<a href=\"%(url_speaker_list)s\"><strong>1</strong></a> orador"
 msgstr[1] ""
 "<a href=\"%(url_speaker_list)s\"><strong>%(n)s</strong></a> oradores"
 
-#: speeches/templates/speeches/_home.html:77
+#: speeches/templates/speeches/_home.html:82
 #, python-format
 msgid "<a href=\"%(url_parentless_list)s\"><strong>1</strong></a> section"
 msgid_plural ""
@@ -512,7 +512,7 @@ msgstr[0] "<a href=\"%(url_parentless_list)s\"><strong>1</strong></a> sección"
 msgstr[1] ""
 "<a href=\"%(url_parentless_list)s\"><strong>%(n)s</strong></a> secciones"
 
-#: speeches/templates/speeches/_home.html:84
+#: speeches/templates/speeches/_home.html:89
 #, python-format
 msgid "<a href=\"%(url_parentless_list)s\"><strong>1</strong></a> question"
 msgid_plural ""
@@ -521,38 +521,51 @@ msgstr[0] "<a href=\"%(url_parentless_list)s\"><strong>1</strong></a> pregunta"
 msgstr[1] ""
 "<a href=\"%(url_parentless_list)s\"><strong>%(n)s</strong></a> preguntas"
 
-#: speeches/templates/speeches/_home.html:97
+#: speeches/templates/speeches/_home.html:96
+#, python-format
+#| msgid "<a href=\"%(url_parentless_list)s\"><strong>1</strong></a> question"
+#| msgid_plural ""
+#| "<a href=\"%(url_parentless_list)s\"><strong>%(n)s</strong></a> questions"
+msgid "<a href=\"%(url_parentless_list)s\"><strong>1</strong></a> questionarie"
+msgid_plural ""
+"<a href=\"%(url_parentless_list)s\"><strong>%(n)s</strong></a> questionaries"
+msgstr[0] ""
+"<a href=\"%(url_parentless_list)s\"><strong>1</strong></a> cuestionario"
+msgstr[1] ""
+"<a href=\"%(url_parentless_list)s\"><strong>%(n)s</strong></a> cuestionarios"
+
+#: speeches/templates/speeches/_home.html:109
 msgid "Date last act:"
 msgstr "Fecha última Acta:"
 
-#: speeches/templates/speeches/_home.html:102
+#: speeches/templates/speeches/_home.html:114
 msgid "Top 10 Speakers:"
 msgstr "Top 10 Congresistas:"
 
-#: speeches/templates/speeches/_home.html:135
+#: speeches/templates/speeches/_home.html:147
 msgid "Brilliant!"
 msgstr "Genial!"
 
-#: speeches/templates/speeches/_home.html:136
+#: speeches/templates/speeches/_home.html:148
 msgid ""
 "Now you&rsquo;ve got your own public database for speeches and statements."
 msgstr ""
 "Ahora usted tiene su propia base de datos pública de discursos y "
 "declaraciones."
 
-#: speeches/templates/speeches/_home.html:137
+#: speeches/templates/speeches/_home.html:149
 msgid ""
 "However, it&rsquo;s totally empty. Let&rsquo;s get started by adding "
 "something."
 msgstr "Sin embargo, esta totalmente vacía. Vamos a empezar añadiendo algo."
 
-#: speeches/templates/speeches/_home.html:139
+#: speeches/templates/speeches/_home.html:151
 #: speeches/templates/speeches/parentless_list.html:61
 #: speeches/templates/speeches/speaker_list.html:49
 msgid "Add your first statement"
 msgstr "Agregue su primera declaración"
 
-#: speeches/templates/speeches/_home.html:140
+#: speeches/templates/speeches/_home.html:152
 #: speeches/templates/speeches/speaker_list.html:47
 msgid "Add your first speaker"
 msgstr "Añadir su primer Orador / Ponente"
@@ -1013,68 +1026,68 @@ msgstr "Guardar cambios"
 msgid "Save speech"
 msgstr "Guardar Acta"
 
-#: speeches/views.py:310
+#: speeches/views.py:311
 #, python-format
 msgid "View Speaker: %(speaker_name)s"
 msgstr "Ver orador: %(speaker_name)s"
 
-#: speeches/views.py:471
+#: speeches/views.py:472
 #, python-format
 msgid "View Section: %(section_title)s"
 msgstr "Ver Sección: %(section_title)s"
 
-#: speeches/views.py:527
+#: speeches/views.py:528
 msgid "Speeches assigned."
 msgstr "Discursos asignados."
 
-#: speeches/views.py:680
+#: speeches/views.py:681
 #, python-format
 msgid "%(created)d speaker created."
 msgid_plural "%(created)d speakers created."
 msgstr[0] "%(created)d orador creado."
 msgstr[1] "%(created)d oradores creados."
 
-#: speeches/views.py:685
+#: speeches/views.py:686
 #, python-format
 msgid "%(refreshed)d speaker refreshed."
 msgid_plural "%(refreshed)d speakers refreshed."
 msgstr[0] "%(refreshed)d orador actualizado."
 msgstr[1] "%(refreshed)d oradores actualizados."
 
-#: speeches/views.py:696
+#: speeches/views.py:697
 msgid "No speakers found."
 msgstr "No se encontraron oradores."
 
-#: speeches/views.py:725
+#: speeches/views.py:726
 msgid "Sorry - something went wrong with the import"
 msgstr "Lo sentimos - algo salió mal con la importación"
 
-#: speeches/views.py:737
+#: speeches/views.py:738
 msgid "Created: "
 msgstr "Creado:"
 
-#: speeches/views.py:740
+#: speeches/views.py:741
 #, python-format
 msgid "%(speakers)d speaker"
 msgid_plural "%(speakers)d speakers"
 msgstr[0] "%(speakers)d Orador"
 msgstr[1] "%(speakers)d Oradores"
 
-#: speeches/views.py:745
+#: speeches/views.py:746
 #, python-format
 msgid "%(sections)d section"
 msgid_plural "%(sections)d sections"
 msgstr[0] "%(sections)d sección"
 msgstr[1] "%(sections)d secciones"
 
-#: speeches/views.py:750
+#: speeches/views.py:751
 #, python-format
 msgid "%(speeches)d speech"
 msgid_plural "%(speeches)d speeches"
 msgstr[0] "%(speeches)d intervención"
 msgstr[1] "%(speeches)d intervenciones"
 
-#: speeches/views.py:761
+#: speeches/views.py:762
 msgid "Nothing new to import."
 msgstr "Nada nuevo que importar"
 
