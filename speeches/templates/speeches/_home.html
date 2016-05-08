@@ -63,6 +63,11 @@
           <a href="{{ url_parentless_list }}"><strong>{{ count_questions|intcomma }}</strong></a>
           quetion{{ count_questions|pluralize }}
           {% endif %}
+          
+          {% if count_questionnaries %};
+          <a href="{{ url_parentless_list }}"><strong>{{ count_questionnaries|intcomma }}</strong></a>
+          quetionnarie{{ count_questions|pluralize }}
+          {% endif %}
         {% else %}
           {% blocktrans with n=count_speeches|intcomma count c=count_speeches trimmed %}
             <a href="{{ url_parentless_list }}"><strong>1</strong></a> speech
@@ -86,6 +91,13 @@
             {% plural %}
             <a href="{{ url_parentless_list }}"><strong>{{ n }}</strong></a> questions
           {% endblocktrans %}{% endif %}
+          
+          {% if count_questionnaries %};
+          {% blocktrans with n=count_questionnaries|intcomma count c=count_questionaries trimmed %}
+          <a href="{{ url_parentless_list }}"><strong>1</strong></a> questionarie
+            {% plural %}
+            <a href="{{ url_parentless_list }}"><strong>{{ n }}</strong></a> questionaries
+          {% endblocktrans %}{% endif %}
 
         {% endif %}
       </div>
@@ -103,7 +115,7 @@
 
   {% if top_speakers %}
 
-    <ul class="speaker-list">
+    <ul class="top-speakers">
       {% for speaker in top_speakers %}
         <li>
             <a href="{{ speaker.get_absolute_url }}">
@@ -111,7 +123,7 @@
 
                     <img src="{% if speaker.image_cache %}{{ speaker.image_cache|thumbnail_url:'speaker-thumb' }}{% elif speaker.image %}{{ speaker.image }}{% else %}{% static "speeches/i/a.png" %}{% endif %}"
                          style="border-color: #{{ speaker.colour }}; background-color: #{{ speaker.colour }};" alt="" class="speaker-card__portrait speaker-portrait round-image speaker-portrait--small">
-                    <span class="speaker-card__name"><small>{{ speaker }}</small></span>
+                    <span class="speaker-card__name">{{ speaker }}</span>
                     <div><small>( {{ speaker.speech_set.count }} ) Intervenciones</small></div>
 
                 </div>
