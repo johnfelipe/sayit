@@ -1,3 +1,13 @@
+.top-speakers .speaker{
+    color: #666361;
+    border: 1px solid #e9e7e4;
+    padding: 1em;
+    margin: 1em;
+    max-width: 20em;
+    display: inline-block;
+    min-width: 30%;
+}
+
 .cloud-word{
     cursor: pointer;
 }
