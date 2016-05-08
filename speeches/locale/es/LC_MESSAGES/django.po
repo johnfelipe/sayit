@@ -508,18 +508,18 @@ msgstr[1] ""
 msgid "<a href=\"%(url_parentless_list)s\"><strong>1</strong></a> section"
 msgid_plural ""
 "<a href=\"%(url_parentless_list)s\"><strong>%(n)s</strong></a> sections"
-msgstr[0] "<a href=\"%(url_parentless_list)s\"><strong>1</strong></a> sección"
+msgstr[0] "<a href=\"%(url_parentless_list)s\"><strong>1</strong></a> Sección"
 msgstr[1] ""
-"<a href=\"%(url_parentless_list)s\"><strong>%(n)s</strong></a> secciones"
+"<a href=\"%(url_parentless_list)s\"><strong>%(n)s</strong></a> Secciones"
 
 #: speeches/templates/speeches/_home.html:89
 #, python-format
 msgid "<a href=\"%(url_parentless_list)s\"><strong>1</strong></a> question"
 msgid_plural ""
 "<a href=\"%(url_parentless_list)s\"><strong>%(n)s</strong></a> questions"
-msgstr[0] "<a href=\"%(url_parentless_list)s\"><strong>1</strong></a> pregunta"
+msgstr[0] "<a href=\"%(url_parentless_list)s\"><strong>1</strong></a> Pregunta"
 msgstr[1] ""
-"<a href=\"%(url_parentless_list)s\"><strong>%(n)s</strong></a> preguntas"
+"<a href=\"%(url_parentless_list)s\"><strong>%(n)s</strong></a> Preguntas"
 
 #: speeches/templates/speeches/_home.html:96
 #, python-format
@@ -530,9 +530,9 @@ msgid "<a href=\"%(url_parentless_list)s\"><strong>1</strong></a> questionarie"
 msgid_plural ""
 "<a href=\"%(url_parentless_list)s\"><strong>%(n)s</strong></a> questionaries"
 msgstr[0] ""
-"<a href=\"%(url_parentless_list)s\"><strong>1</strong></a> cuestionario"
+"<a href=\"%(url_parentless_list)s\"><strong>1</strong></a> Cuestionario"
 msgstr[1] ""
-"<a href=\"%(url_parentless_list)s\"><strong>%(n)s</strong></a> cuestionarios"
+"<a href=\"%(url_parentless_list)s\"><strong>%(n)s</strong></a> Cuestionarios"
 
 #: speeches/templates/speeches/_home.html:109
 msgid "Date last act:"
