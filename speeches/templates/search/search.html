@@ -16,7 +16,7 @@
           </label>
         {% endif %}
       </div>
-      <input type="checkbox" class="site-search__checkbox" name="sorted_by" value="date" {% if form.sorted_by.value %} {{ form.s.value }} checked {% endif %} /> sort by lasted first
+      <input type="checkbox" class="site-search__checkbox" name="sorted_by" value="date" {% if form.sorted_by.value %} {{ form.s.value }} checked {% endif %} /> {% trans 'Oldest first' %}
     </form>
 
     <div class="page-content__row ">
