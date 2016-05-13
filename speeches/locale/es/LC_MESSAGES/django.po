@@ -490,7 +490,7 @@ msgstr "Buscar discursos y declaraciones"
 msgid "<a href=\"%(url_parentless_list)s\"><strong>1</strong></a> speech"
 msgid_plural ""
 "<a href=\"%(url_parentless_list)s\"><strong>%(n)s</strong></a> speeches"
-msgstr[0] "<a href=\"%(url_parentless_list)s\"><strong>1</strong></a> Acta"
+msgstr[0] "<a href=\"%(url_parentless_list)s\"><strong>1</strong></a> Intervencion"
 msgstr[1] ""
 "<a href=\"%(url_parentless_list)s\"><strong>%(n)s</strong></a> Intervenciones"
 
@@ -540,7 +540,7 @@ msgstr "Fecha última Acta:"
 
 #: speeches/templates/speeches/_home.html:114
 msgid "Top 10 Speakers:"
-msgstr "Top 10 Congresistas:"
+msgstr "Top 10 Oradores:"
 
 #: speeches/templates/speeches/_home.html:147
 msgid "Brilliant!"
@@ -598,7 +598,7 @@ msgstr "Inicio"
 #: speeches/templates/speeches/parentless_list.html:22
 #: speeches/templates/speeches/speaker_detail.html:96
 msgid "Speeches"
-msgstr "Actas"
+msgstr "Intervenciones"
 
 #: speeches/templates/speeches/base.html:56
 msgid "Welcome,"
