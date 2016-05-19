@@ -3,7 +3,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 from speeches.views import (
     AddAnSRedirectView, SpeechAudioCreate, SpeechCreate, SpeechUpdate,
-    SpeechDelete, SpeechView, SpeakerCreate, SpeakerUpdate, SpeakerDelete,
+    SpeechDelete, SpeechView, SpeakerCreate, SpeakerUpdate, SpeakerDelete, SpeakerSubscribe,
     SpeakerView, SpeakerList, SectionCreate, SectionUpdate, SectionDelete,
     SectionView, SectionViewAN, ParentlessList, RecordingList, RecordingView,
     RecordingUpdate, RecordingAPICreate, InstanceView, Select2AutoResponseView,
@@ -45,6 +45,7 @@ urlpatterns = [
     url(r'^speech/(?P<pk>\d+)/delete$', SpeechDelete.as_view(), name='speech-delete'),
 
     url(r'^speakers$', SpeakerList.as_view(), name='speaker-list'),
+    url(r'^speaker/subscribe$', SpeakerSubscribe.as_view(), name='speaker-subscribe'),
     url(r'^speaker/add$', SpeakerCreate.as_view(), name='speaker-add'),
     url(r'^speaker/(?P<pk>\d+)/edit$', SpeakerUpdate.as_view(), name='speaker-edit'),
     url(r'^speaker/(?P<pk>\d+)/delete$', SpeakerDelete.as_view(), name='speaker-delete'),

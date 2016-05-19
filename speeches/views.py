@@ -326,6 +326,10 @@ class SpeakerCreate(SpeakerMixin, CreateView):
     pass
 
 
+class SpeakerSubscribe(SpeakerMixin, View ):
+    pass
+
+
 class SpeakerUpdate(SpeakerMixin, UpdateView):
     pass
 

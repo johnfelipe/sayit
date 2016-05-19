@@ -85,9 +85,26 @@
           </div>
         </div>
         {% endwith %}{% endif %}
+
+        <div class="stat">
+        
+
+
+          <div class="speaker-page__subscribe">
+                  <form class="speaker-subscribe" action={% url "speeches:speaker-subscribe" %} method="get" >
+              <div class="search-wrapper">
+                  <input type="email" class="site-email__input" placeholder="{% trans "Your email address" %}" name="email"/>
+                  <input type="submit" class="icon-button icon-button" value="{% trans "Subscribe" %}"/>
+              </div>
+            </form>
+          </div>
+
+
+        </div>
+
       </div>
     </div>
-
+        
   </div>
 </div>
 <div class="speaker-page__speeches-collection">
