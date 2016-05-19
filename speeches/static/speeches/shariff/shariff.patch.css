@@ -1,0 +1,18 @@
+.shariff {
+	display: inline-block;
+}
+
+.shariff .share_text{
+	display:none !important;
+}
+
+.shariff li{
+	min-width: 30px !important;
+	margin: 2px !important;
+}
+
+.shariff li a{
+	margin: 0;
+	padding:0;
+	max-width: 30px;
+}
