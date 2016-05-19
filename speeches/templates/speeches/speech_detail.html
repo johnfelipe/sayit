@@ -18,7 +18,7 @@
   {% endif %}
 {% endwith %}
 <link href="{% static "speeches/shariff/shariff.complete.css" %}" media="all" rel="stylesheet" />
-<link href="{% static "speeches/shariff/shariff.patch.css" %}" media="all" rel="stylesheet" />
+<!-- link href="{% static "speeches/shariff/shariff.patch.css" %}" media="all" rel="stylesheet" / -->
 {% endblock %}
 
 {% block og_description %}{{ speech.text|striptags|truncatewords:30 }}{% endblock %}
