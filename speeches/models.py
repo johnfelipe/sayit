@@ -361,8 +361,9 @@ class Section(AuditedModel, InstanceMixin):
                     )
                     section_copy._childs = []
                     parents[-1]._childs.append(section_copy)
-                    parents.append(section_copy)
+                    parents.append(section_copy)                    
             prev = node
+
             parents[-1]._childs.append(node)
         return d
 

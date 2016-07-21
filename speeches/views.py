@@ -308,6 +308,7 @@ class SpeakerView(NamespaceMixin, InstanceViewMixin, Base32SingleObjectMixin, Li
         context['section_count'] = self.object.speech_set.all().visible(self.request) \
             .aggregate(Count('section', distinct=True))['section__count']
         context['longest_speech'] = self.object.speech_set.annotate(length=Length('text')).order_by('-length')[:1]
+        context['shortest_speech'] = self.object.speech_set.annotate(length=Length('text')).order_by('length')[:1]
         context['title'] = _('View Speaker: %(speaker_name)s') % {'speaker_name': self.object.name}
         return context
 
@@ -465,16 +466,20 @@ class SectionView(NamespaceMixin, InstanceViewMixin, DetailView):
         return obj
 
     def get_context_data(self, **kwargs):
+        print "I am here"
         all_speeches = kwargs.pop('all_speeches', False)
         # Call the base implementation first to get a context
         context = super(SectionView, self).get_context_data(**kwargs)
-        # Add in a QuerySet of all the speeches in this section
+        # Add in a QuerySet of all the speeches in this section        
         context['section_tree'] = kwargs['object'].get_descendants_tree_with_speeches(
             self.request,
             all_speeches=all_speeches,
         )
+        context['longest_speech'] = self.object.speech_set.annotate(length=Length('text')).order_by('-length')[:1]
+        context['shortest_speech'] = self.object.speech_set.annotate(length=Length('text')).order_by('length')[:1]
         context['title'] = _('View Section: %(section_title)s') % {'section_title': self.object.title}
         context['speech_template'] = loader.get_template('speeches/speech.html')
+
         return context
 
 
@@ -488,13 +493,16 @@ class SectionViewAN(SectionView):
     def get_context_data(self, **kwargs):
         kwargs['all_speeches'] = True
         context = super(SectionViewAN, self).get_context_data(**kwargs)
+        print dir(context)
         speakers = set(
             s[0].speaker
             for s in context['section_tree']
             if isinstance(s[0], Speech) and s[0].speaker
         )
         context['speakers'] = speakers
-        context['server_name'] = self.request.META.get('SERVER_NAME')
+        
+        context['server_name'] = self.request.META.get('SERVER_NAME')        
+        print "I am here also"
         return context
 
 

@@ -1,5 +1,6 @@
 {% extends 'speeches/base_player.html' %}
 {% load i18n %}
+{% load speech_utils %}
 
 {% block extra_headers %}
 {% with next=section.get_next_node previous=section.get_previous_node %}
@@ -16,7 +17,9 @@
 
 {% block content %}
 
-<div class="page-header page-header--speech">
+
+
+<div class="page-header page-header--speech"><!--start of page header -->
 
   {% if request.is_user_instance %}
     <a href="{% url 'speeches:speech-add' %}?section={{ section.id }}" class="button small right">{% trans "Add speech" %}</a>
@@ -31,22 +34,27 @@
     {% if section.source_url %}
     <p><a href="{{ object.source_url }}">{% trans "Source" %}</a></p>
     {% endif %}
-
+    
     {{ section.description }}
 
-</div>
-
 {% for node, structure in section_tree %}
-
   {% if forloop.first %}
+    <!-- For the sorting of date -->  
+    {% if not structure.speech %}
+      <div class="large-12 columns" style="margin-top:5px;"> 
+        <label><input id="sort-date" name="sort-date" type="checkbox"> Sort by most recent date</label>
+      </div>
+    {% endif %}
+    <!-- End of sorting of date -->
+    </div> <!-- End of page header -->
     <div class="page-content__row">
-        <div class="primary-content__unit">
-  {% endif %}
-
+        <div class="primary-content__unit">    
+  {% endif %}          
           {% if structure.new_level %}<ul class="section-list">{% else %}</li>{% endif %}
 
           {% if structure.speech %}
             <li id="s{{ node.id }}" class="speech {% if node.speaker %}speech--with-portrait{% endif %} speech--{{ speech.type }} speech--border"{% if node.speaker.colour %} style="border-left-color: #{{ node.speaker.colour }};"{% endif %}>
+
             {% include speech_template with speech=node nosection="1" section=section noli=1 %}
           {% else %}
             <li class="speech speech--section-signpost speech--with-portrait">
@@ -97,6 +105,51 @@
               {% endif %}
             {% endwith %}
 
+            
+            <div class=".large-12.columns .small-12.columns"><!-- start of longest and shortest speech -->
+                  {% if 'ACTA' in section.title %}
+                    {% if longest_speech %}{% with longest_speech.0 as speech %}
+                    <div class="stat" style="border-right:none;">
+                      <div class="stat__figure">
+                        {% if speech.section %}
+                        <a href="{% url 'speeches:section-view' speech.section.get_path %}#s{{ speech.id }}">
+                        {% else %}
+                        <a href="{% url 'speeches:speech-view' speech.id %}">
+                        {% endif %}
+                          {% if speech.title %}{{ speech.title }}{% else %}
+                          &#8220;{{ speech.summary|truncatechars:300 }}&#8221;
+                          {% endif %}
+                        </a>
+                      </div>
+                      <div class="stat__descriptor">
+                        {% trans "Longest speech" %}
+                      </div>
+                    </div>
+                    {% endwith %}{% endif %}
+
+                   {% if shortest_speech %}{% with shortest_speech.0 as speech %}
+                    <div class="stat" style="border-right:none;">
+                      <div class="stat__figure">
+                        {% if speech.section %}
+                        <a href="{% url 'speeches:section-view' speech.section.get_path %}#s{{ speech.id }}">
+                        {% else %}
+                        <a href="{% url 'speeches:speech-view' speech.id %}">
+                        {% endif %}
+                          {% if speech.title %}{{ speech.title }}{% else %}
+                          &#8220;{{ speech.summary|truncatechars:300 }}&#8221;
+                          {% endif %}
+                          
+                        </a>
+                      </div>
+                      <div class="stat__descriptor">
+                        {% trans "Shortest speech" %}
+                      </div>
+                    </div>
+                    {% endwith %}{% endif %}
+                {% endif %}
+
+            </div><!-- end of longest and shortest speech -->
+
         </div><!-- close sidebar__unit -->
 
     </div><!-- close page-content_row -->
@@ -113,3 +166,20 @@
 {% endfor %}
 
 {% endblock %}
+<!-- **********************This part is added for reversing the tree**************************************** -->
+{% block extra_js_head %}
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#sort-date').click(function(){
+          ull = $(".primary-content__unit").children(':first');
+          ull.children().each(function(i,li){ull.prepend(li)});
+          ull.find('ul').each(function( index ) {
+              all_ul = $(this); 
+              all_ul.children().each(function(i,li){all_ul.prepend(li)});
+          });          
+
+    });
+  });
+</script>
+{% endblock %}
+<!--- ********************************************************************************************************** -->

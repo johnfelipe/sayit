@@ -40,7 +40,7 @@
       </div>
       <div class="speaker-page__stats">
         {% if section_count %}
-          <div class="stat">
+          <div class="stat" style="margin-right:4px;padding-right:2px;">
             <div class="stat__figure">
               {{ section_count|intcomma }}
             </div>
@@ -49,7 +49,7 @@
             </div>
           </div>
         {% endif %}
-        <div class="stat">
+        <div class="stat" style="margin-right:4px;padding-right:2px;">
           <div class="stat__figure">
             {{ paginator.count|intcomma }}
           </div>
@@ -68,7 +68,7 @@
         </div>
         -->
         {% if longest_speech %}{% with longest_speech.0 as speech %}
-        <div class="stat">
+        <div class="stat" style="margin-right:4px;padding-right:2px;">
           <div class="stat__figure">
             {% if speech.section %}
             <a href="{% url 'speeches:section-view' speech.section.get_path %}#s{{ speech.id }}">
@@ -86,11 +86,27 @@
         </div>
         {% endwith %}{% endif %}
 
-        <div class="stat">
-        
+        {% if shortest_speech %}{% with shortest_speech.0 as speech %}
+        <div class="stat" style="margin-right:4px;padding-right:2px;">
+          <div class="stat__figure">
+            {% if speech.section %}
+            <a href="{% url 'speeches:section-view' speech.section.get_path %}#s{{ speech.id }}">
+            {% else %}
+            <a href="{% url 'speeches:speech-view' speech.id %}">
+            {% endif %}
+              {% if speech.title %}{{ speech.title }}{% else %}
+              &#8220;{{ speech.summary|bleach }}&#8221;
+              {% endif %}
+            </a>
+          </div>
+          <div class="stat__descriptor">
+            {% trans "Shortest speech" %}
+          </div>
+        </div>
+        {% endwith %}{% endif %}        
 
-
-          <div class="speaker-page__subscribe">
+        <div class="stat" style="margin-right:4px;padding-right:2px;">
+           <div class="speaker-page__subscribe">
                   <form class="speaker-subscribe" action={% url "speeches:speaker-subscribe" %} method="get" >
               <div class="search-wrapper">
                   <input type="email" class="site-email__input" placeholder="{% trans "Your email address" %}" name="email"/>
