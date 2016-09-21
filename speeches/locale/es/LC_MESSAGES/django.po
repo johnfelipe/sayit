@@ -816,7 +816,7 @@ msgstr[1] "Discursos"
 
 #: speeches/templates/speeches/speaker_detail.html:84
 msgid "Longest speech"
-msgstr "discurso más largo"
+msgstr "Discurso más largo"
 
 #: speeches/templates/speeches/speaker_detail.html:109
 msgid "Search this person's speeches"
@@ -1116,3 +1116,7 @@ msgstr "hh:mm"
 #: speeches/templates/speeches/section_detail.html:145
 msgid "Shortest speech"
 msgstr "Discurso más corto"
+
+#: speeches/templates/speeches/section_detail.html:45
+msgid "Sort by most recent date"
+msgstr "Ordenar por la fecha más reciente"
