@@ -161,7 +161,7 @@
                   </div>
 
             </div> <!-- ./speech -->
-
+            {% include 'speeches/_common_words.html' %}
             {% with next=speech.get_next_speech previous=speech.get_previous_speech %}
               {% if previous or next %}
                 <div class="speech-navigation">

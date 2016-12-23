@@ -37,7 +37,7 @@ from django.views.generic.detail import SingleObjectMixin
 from django.views.generic.edit import BaseFormView, BaseUpdateView
 
 from django_select2.views import AutoResponseView
-from templatetags.speech_extension import get_common_words
+from templatetags.speech_extension import get_common_words, get_common_words_from_speech
 
 import logging
 
@@ -246,7 +246,8 @@ class SpeechView(NamespaceMixin, InstanceViewMixin, DetailView):
         context['title'] = strip_tags(
             self.object.title or
             u'\u201C%s\u201D' % self.object.summary
-            )
+            )        
+        context['common_words'] = get_common_words_from_speech(self.object)
         return context
 
 
