@@ -37,7 +37,7 @@ from django.views.generic.detail import SingleObjectMixin
 from django.views.generic.edit import BaseFormView, BaseUpdateView
 
 from django_select2.views import AutoResponseView
-from templatetags.speech_extension import get_common_words, get_common_words_from_speech
+from templatetags.speech_extension import get_common_words, get_common_words_from_speech, get_common_words_from_list_of_speeches
 
 import logging
 
@@ -468,7 +468,9 @@ class SectionView(NamespaceMixin, InstanceViewMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         print "I am here"
-        all_speeches = kwargs.pop('all_speeches', False)
+        all_speeches = kwargs.pop('all_speeches', False)        
+        ordered_all_speeches = self.object.speech_set.annotate(length=Length('text')).order_by('-length')
+
         # Call the base implementation first to get a context
         context = super(SectionView, self).get_context_data(**kwargs)
         # Add in a QuerySet of all the speeches in this section        
@@ -478,8 +480,10 @@ class SectionView(NamespaceMixin, InstanceViewMixin, DetailView):
         )
         context['longest_speech'] = self.object.speech_set.annotate(length=Length('text')).order_by('-length')[:1]
         context['shortest_speech'] = self.object.speech_set.annotate(length=Length('text')).order_by('length')[:1]
-        context['title'] = _('View Section: %(section_title)s') % {'section_title': self.object.title}
+        context['title'] = _('View Section: %(section_title)s') % {'section_title': self.object.title} 
+        context['common_words'] = get_common_words_from_list_of_speeches(ordered_all_speeches)
         context['speech_template'] = loader.get_template('speeches/speech.html')
+
 
         return context
 

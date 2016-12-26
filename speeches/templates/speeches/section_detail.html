@@ -47,7 +47,7 @@
     {% endif %}
     <!-- End of sorting of date -->
     </div> <!-- End of page header -->
-    <div class="page-content__row">
+    <div class="page-content__row">        
         <div class="primary-content__unit">    
   {% endif %}          
           {% if structure.new_level %}<ul class="section-list">{% else %}</li>{% endif %}
@@ -70,7 +70,7 @@
           {% for level in structure.closed_levels %}</li></ul>{% endfor %}
 
   {% if forloop.last %}
-
+        {% include 'speeches/_common_words.html' %}
           {% with next=section.get_next_node previous=section.get_previous_node %}
             {% if previous or next %}
               <div class="section-navigation speech-list-navigation">
@@ -83,7 +83,7 @@
               </div>
             {% endif %}
           {% endwith %}
-
+        
         </div><!-- close primary-content__unit -->
 
         <div class="sidebar__unit section-detail-sidebar">
